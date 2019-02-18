@@ -8,5 +8,4 @@ services:
     volumes:
       - ./:/app
     environment:
-      - appName=indep-1
-      - inspector=9229
+      - NODE_ENV=development

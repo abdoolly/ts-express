@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node_modules/webpack/bin/webpack.js --progress -p --env.production --config config/webpack.config.js",
     "start": "npm run start:dev",
-    "start:dev": "NODE_ENV=development webpack -w --config config/webpack.config.js",
+    "start:dev": "webpack -w --config config/webpack.config.js",
     "start:prod": "npm run build ; nodemon build/compiled",
     "test": "node_modules/ts-node/dist/bin.js ./node_modules/mocha/bin/mocha -r ts-node/register ./tests/bootstrap.test.ts ./tests/unit/0.00.0/0.0.test.ts ./tests/integration/0.00.0/0.0.test.ts",
     "integration": "node_modules/ts-node/dist/bin.js ./node_modules/mocha/bin/mocha -r ts-node/register ./tests/bootstrap.test.ts ./tests/integration/0.00.0/0.0.test.ts"
