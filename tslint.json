@@ -25,7 +25,8 @@
     "only-arrow-functions": false,
     "no-require-imports": false,
     "no-var-requires": false,
-    "prefer-const": false
+    "prefer-const": false,
+    "indent": true
   },
   "rulesDirectory": []
 }
