@@ -13,9 +13,11 @@ app.set('views', `${root}/src/views/`);
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+app.use(
+  bodyParser.urlencoded({
     extended: false
-}));
+  })
+);
 
 app.use(cookieParser());
 
@@ -25,14 +27,22 @@ app.use('/', routes);
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-        console.log('err', err);
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
+  app.use(
+    (
+      err: any,
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction
+    ) => {
+      console.log('err', err);
+
+      res.status(err.status || 500);
+      res.render('error', {
+        message: err.message,
+        error: err
+      });
+    }
+  );
 }
 
 export = app;

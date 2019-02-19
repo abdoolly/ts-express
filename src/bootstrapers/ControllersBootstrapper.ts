@@ -1,7 +1,7 @@
-import { BaseBootstrapper } from "./BaseBootstrapper";
+import { BaseBootstrapper } from './BaseBootstrapper';
 
 export class ControllersBootstrapper extends BaseBootstrapper {
-    async bootstrap() {
-        return '';
-    }
+  async bootstrap() {
+    return '';
+  }
 }

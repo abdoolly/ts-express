@@ -9,6 +9,7 @@
     "start:dev": "nodemon",
     "debug": "nodemon --config nodemon-debug.json",
     "start:prod": "rm -rf build/* && npm run build && node build/bin/www.js",
+    "lint": "tslint -p tsconfig.json -c tslint.json --fix",
     "test": "node_modules/ts-node/dist/bin.js ./node_modules/mocha/bin/mocha -r ts-node/register ./tests/bootstrap.test.ts ./tests/unit/0.00.0/0.0.test.ts ./tests/integration/0.00.0/0.0.test.ts",
     "integration": "node_modules/ts-node/dist/bin.js ./node_modules/mocha/bin/mocha -r ts-node/register ./tests/bootstrap.test.ts ./tests/integration/0.00.0/0.0.test.ts"
   },
@@ -26,11 +27,15 @@
     "@types/debug": "^4.1",
     "@types/express": "^4.16",
     "@types/express-serve-static-core": "^4.16",
+    "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2",
     "@types/mongoose": "^5.3",
     "@types/node": "^11.9",
     "@types/serve-static": "^1.13",
     "nodemon": "^1.18",
+    "prettier": "^1.16.4",
+    "tslint": "^5.12.1",
+    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.3"
   },
   "repository": {
@@ -38,7 +43,6 @@
     "url": ""
   },
   "dependencies": {
-    "@types/glob": "^7.1.1",
     "app-root-path": "^2.1",
     "body-parser": "^1.18",
     "chai": "^4.2",
