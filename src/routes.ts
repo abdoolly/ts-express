@@ -2,7 +2,13 @@ import { NextFunction, Request, Response, Router } from 'express';
 const router = Router();
 
 
+require('./serviceProviders/ControllersProvider');
+
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+    return res.send({ 'Hello': 'All GOOD' });
+});
+
+router.get('/test', async (req: Request, res: Response, next: NextFunction) => {
     return res.send({ 'Hello': 'All GOOD' });
 });
 

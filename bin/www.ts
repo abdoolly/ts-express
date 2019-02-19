@@ -4,7 +4,7 @@
 import * as debug from 'debug';
 import * as http from 'http';
 import * as app from '../app';
-import { BaseException } from '../server/exceptions/BaseException';
+import { BaseException } from '../src/exceptions/BaseException';
 
 // binding to console
 let log = debug('modern-express:server');
