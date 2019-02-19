@@ -92,16 +92,16 @@ export class ControllerProvider {
         // let controller = require(`${filePath}`);
         let splitted = filePath.split('/');
         let controllerName = splitted[splitted.length - 1];
-        console.log('controllerName', controllerName);
+        // console.log('controllerName', controllerName);
 
-        console.log('filePath', filePath);
-        console.log('choosen Path', `${filePath}/${controllerName}`);
+        // console.log('filePath', filePath);
+        // console.log('choosen Path', `${filePath}/${controllerName}`);
 
         // let controller = require(`../src/controllers/`);
         let controller = {};
-        controller['x']['y'];
-        console.log('controller value', controller[controllerName]);
-        console.log('------------');
+        // controller['x']['y'];
+        // console.log('controller value', controller[controllerName]);
+        // console.log('------------');
     }
 
 }
