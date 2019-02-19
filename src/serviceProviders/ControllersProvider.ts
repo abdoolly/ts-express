@@ -28,7 +28,7 @@ export class ControllerProvider {
         // then continue 
 
 
-        console.log('controllers', controllers);
+        // console.log('controllers', controllers);
     }
 
     doPathOperations(controllerPaths: string[]) {
