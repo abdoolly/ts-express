@@ -44,7 +44,8 @@
     "curly": false,
     "ban-types": false,
     "space-before-function-paren": false,
-    "no-empty-interface": false
+    "no-empty-interface": false,
+    "no-string-literal": false
   },
   "rulesDirectory": []
 }

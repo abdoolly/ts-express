@@ -3,7 +3,7 @@
  */
 import * as debug from 'debug';
 import * as http from 'http';
-import { app } from '../app';
+import * as app from '../app';
 import { BaseException } from '../src/exceptions/BaseException';
 
 // binding to console
@@ -62,6 +62,6 @@ server.on('listening', () => {
 /**
  * global promise rejection error handler
  */
-process.on('unhandledRejection', async function(errInstance: BaseException, p) {
+process.on('unhandledRejection', async function (errInstance: BaseException, p) {
   console.log('errInstance', errInstance);
 });

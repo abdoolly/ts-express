@@ -1,8 +1,6 @@
-import { Router } from 'express';
 import { getRouteProvider } from './serviceProviders/RoutesProvider';
-const router = Router();
-const Route = getRouteProvider.provide();
+let Route = getRouteProvider.provide();
 
-Route.get('/', 'BaseController@test');
+Route.get('/test', 'BaseController@test');
 
-export = router;
+export = Route;

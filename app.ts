@@ -1,11 +1,12 @@
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
+import { validationHook } from './src/middlewares/hooks';
+import * as routes from './src/routes';
+import * as pino from 'pino';
 
 // initiating the express
-export const app = express();
-
-import * as routes from './src/routes';
+const app = express();
 
 app.use(bodyParser.json());
 app.use(
@@ -13,6 +14,18 @@ app.use(
     extended: false
   })
 );
+
+app.use(validationHook);
+
+global['print'] = pino({
+  customLevels: {
+    off: 600
+  },
+  useOnlyCustomLevels: false,
+  level: 'trace',
+  prettyPrint: true,
+  base: null,
+});
 
 app.use(cookieParser());
 
@@ -40,4 +53,4 @@ if (app.get('env') === 'development') {
   );
 }
 
-// export = app;
+export = app;

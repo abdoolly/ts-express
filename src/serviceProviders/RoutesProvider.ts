@@ -1,19 +1,34 @@
 import { controllersMapper } from './ControllersProvider';
-import { app } from '../../app';
 import { Application, Request, Response } from 'express';
+import { Router } from 'express';
 
 class RoutesProvider {
+
+  methods = {
+    get: 1,
+    post: 1,
+    put: 1
+  };
+
   /**
    * @description the main function which do all the magic of applying the router
    * to express
    * @param params
    */
-  provide(...params): any {
+  provide(): any {
+    const app = Router();
     let fakeApp: any = new Proxy(
-      {},
+      app,
       {
         get: (target: Application, accessedPropertyName: string) => {
+
+          // if the method is not supported in the above methods object then do nothing
+          // and make continue doing whatever it should be doing
+          if (!this.methods[accessedPropertyName])
+            return;
+
           return (...args: any[]) => {
+
             // getting the endpoint
             let endpoint = args[0];
 
