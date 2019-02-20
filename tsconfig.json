@@ -8,17 +8,17 @@
         "declaration": true,
         "experimentalDecorators": true,
         "outDir": "build",
+        "removeComments": true,
         "lib": [
             "dom",
             "es2015",
-        ]
+        ],
+        "baseUrl": "./",
     },
     "exclude": [
         "node_modules",
-        "build",
-        "config",
-        "release"
+        "build"
     ],
     "emitDecoratorMetadata": true,
-    "experimentalDecorators":true,
+    "experimentalDecorators": true
 }
