@@ -29,6 +29,7 @@ server.listen(PORT);
 
 
 server.on('error', (error: any) => {
+    console.log('error.syscall');
     /**
      * Event listener for HTTP server "error" event.
      */

@@ -45,6 +45,6 @@ module.exports = env => {
             }),
         ] : [],
         watch: false,
-        mode: process.env.NODE_ENV || "developement"
+        mode: process.env.NODE_ENV || "development"
     }
 };

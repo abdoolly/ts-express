@@ -3,6 +3,8 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import * as routes from './server/routes';
+import { validationHook } from './server/middlewares/hooks'
+import * as pino from 'pino';
 
 
 // initiating the express
@@ -16,6 +18,42 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+app.use(validationHook);
+
+
+/**
+ * off	100 ("silent")
+    fatal	60
+    error	50
+    warn	40
+    info	30
+    debug	20
+trace	10
+ */
+function thisLine() {
+    const e = new Error();
+    const regex = /\((.*):(\d+):(\d+)\)$/
+    const match = regex.exec(e.stack.split("\n")[2]);
+    return {
+      filepath: match[1],
+      line: match[2],
+      column: match[3]
+    };
+  }
+  
+console.log(thisLine());
+
+global['print'] = pino({
+    customLevels: {
+        off: 600
+    },
+    useOnlyCustomLevels: false,
+    level: 'trace',
+    prettyPrint: true,
+    base:{line:new Error().lineNumber},
+});
+
 
 app.use(cookieParser());
 
@@ -34,5 +72,6 @@ if (app.get('env') === 'development') {
         });
     });
 }
+
 
 export = app;
