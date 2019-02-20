@@ -2,22 +2,29 @@ import * as root from 'app-root-path';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
+<<<<<<< HEAD
 import * as routes from './server/routes';
 import { validationHook } from './server/middlewares/hooks'
 import * as pino from 'pino';
 
+=======
+import * as routes from './src/routes';
+import { BaseBootstrapper } from './src/bootstrapers/BaseBootstrapper';
+>>>>>>> 94908e0a5a19e2dd5d09cdf16a037161691699d8
 
 // initiating the express
 const app = express();
 
 // view engine setup
-app.set('views', `${root}/server/views/`);
+app.set('views', `${root}/src/views/`);
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+app.use(
+  bodyParser.urlencoded({
     extended: false
-}));
+  })
+);
 
 app.use(validationHook);
 
@@ -63,15 +70,27 @@ app.use('/', routes);
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-        console.log('err', err);
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
+  app.use(
+    (
+      err: any,
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction
+    ) => {
+      console.log('err', err);
+
+      res.status(err.status || 500);
+      res.render('error', {
+        message: err.message,
+        error: err
+      });
+    }
+  );
 }
 
+<<<<<<< HEAD
 
 export = app;
+=======
+export = app;
+>>>>>>> 94908e0a5a19e2dd5d09cdf16a037161691699d8

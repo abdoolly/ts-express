@@ -4,24 +4,23 @@ import { Server } from 'http';
 
 let server: Server = null;
 
-
 /**
  * @description starting the server before the test
  */
-before((done) => {
-    // using the app to initiate everything
-    server = app.listen('3001', (err) => {
-        if (err)
-            throw err;
+before(done => {
+  // using the app to initiate everything
+  server = app.listen('3001', err => {
+    if (err) {
+      throw err;
+    }
 
-        done();
-    });
+    done();
+  });
 });
-
 
 /**
  * @description closing the server after the test ends
  */
-after((done) => {
-    server.close(() => done());
+after(done => {
+  server.close(() => done());
 });

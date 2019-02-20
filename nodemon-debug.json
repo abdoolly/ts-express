@@ -1,0 +1,12 @@
+{
+    "watch": [
+        "src",
+        "bin",
+        "config"
+    ],
+    "ext": "ts",
+    "ignore": [
+        "src/**/*.spec.ts"
+    ],
+    "exec": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register bin/www.ts"
+}
