@@ -8,28 +8,16 @@ export class ControllerProvider {
   controllersExtension = '.ts';
 
   provide() {
-    /**
-     * MAIN PURPOSE make the controllers object mappers
-     *
-     * - read all controllers
-     * - remove extensions
-     * -
-     * - split on
-     * - make there names as object mappers
-     */
-    const controllers = globSync(`${this.constrollersDirectory}/**/**.ts`);
+    // getting all controllers and their directory
+    let controllers = globSync(
+      `${this.constrollersDirectory}/**/**${this.controllersExtension}`
+    );
 
-    this.doPathOperations(controllers);
-    // controllers = controllers.map(this.removeExtensionsInFilePath.bind(this));
-    // controllers = controllers.map(this.removeDirectoryPathFromControllerPath.bind(this));
-
-    // remove the extensions then make a copy
-    // then continue
-
-    // console.log('controllers', controllers);
+    // making the controller Mappers
+    return this.doPathOperations(controllers);
   }
 
-  doPathOperations(controllerPaths: string[]) {
+  private doPathOperations(controllerPaths: string[]) {
     const fullPathWithoutExtension = [];
     const controllerMapper = {};
 
@@ -44,17 +32,18 @@ export class ControllerProvider {
       const mapperProperty = this.removeDirectoryPathFromControllerPath(path);
 
       // getting the controller module
-      // we need to check if the controller exists
       // if the controller does not exist we need to say
       controllerMapper[mapperProperty] = this.makeMapperPropertyValue(path);
     }
+
+    return controllerMapper;
   }
 
   /**
    * @description get a file path and remove the extension .ts extension
    * @param filePath
    */
-  removeExtensionsInFilePath(filePath: string) {
+  private removeExtensionsInFilePath(filePath: string) {
     const removeDotSlash = new RegExp(/\.\//);
     const removeExtension = new RegExp(`${this.controllersExtension}`);
     return filePath.replace(removeExtension, '').replace(removeDotSlash, '');
@@ -64,7 +53,7 @@ export class ControllerProvider {
    * @description remove the ./ and the main directory path from the controllers paths
    * @param filePath
    */
-  removeDirectoryPathFromControllerPath(filePath: string) {
+  private removeDirectoryPathFromControllerPath(filePath: string) {
     // removing the dot from the directory name
     const removeDotSlash = new RegExp(/\.\//);
     const directory = this.constrollersDirectory.replace(removeDotSlash, '');
@@ -80,23 +69,21 @@ export class ControllerProvider {
    * to be put in the controllers mapper object
    * @param filePath
    */
-  makeMapperPropertyValue(filePath: string) {
-    // statically remove the src folder
-    //
+  private makeMapperPropertyValue(filePath: string) {
+    // split the path
+    let splitted = filePath.split('/');
 
-    // let controller = require(`${filePath}`);
-    const splitted = filePath.split('/');
-    const controllerName = splitted[splitted.length - 1];
-    // console.log('controllerName', controllerName);
+    // get the controller name from the path
+    let controllerName = splitted[splitted.length - 1];
 
-    // console.log('filePath', filePath);
-    // console.log('choosen Path', `${filePath}/${controllerName}`);
-
-    // let controller = require(`../src/controllers/`);
-    const controller = {};
-    // controller['x']['y'];
-    // console.log('controller value', controller[controllerName]);
-    // console.log('------------');
+    try {
+      // require the controller dynamically
+      let controller = require(`../../${filePath}`)[`${controllerName}`];
+      // returning a new object of the controller for the controllers mapper
+      return new controller();
+    } catch (err) {
+      console.log('err', err);
+    }
   }
 }
 
@@ -104,4 +91,5 @@ export class ControllerProvider {
  * @description we run that provider here to generate the controller object mapper
  * and cache the result so its not recalculated again
  */
-export let controllersMapper = new ControllerProvider().provide();
+let controllersProvider = new ControllerProvider();
+export let controllersMapper = controllersProvider.provide();

@@ -1,12 +1,8 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Router } from 'express';
+import { getRouteProvider } from './serviceProviders/RoutesProvider';
 const router = Router();
+const Route = getRouteProvider.provide();
 
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  return res.send({ Hello: 'All GOOD' });
-});
-
-router.get('/test', async (req: Request, res: Response, next: NextFunction) => {
-  return res.send({ Hello: 'All GOOD' });
-});
+Route.get('/', 'BaseController@test');
 
 export = router;

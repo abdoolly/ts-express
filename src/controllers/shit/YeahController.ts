@@ -1,1 +1,6 @@
-export class YeahController {}
+export class YeahController {
+
+    koko(req, res) {
+        res.send('wtf thats awesome');
+    }
+}

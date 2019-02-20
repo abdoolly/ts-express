@@ -1,16 +1,11 @@
-import * as root from 'app-root-path';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
-import * as routes from './src/routes';
-import { BaseBootstrapper } from './src/bootstrapers/BaseBootstrapper';
 
 // initiating the express
-const app = express();
+export const app = express();
 
-// view engine setup
-app.set('views', `${root}/src/views/`);
-app.set('view engine', 'ejs');
+import * as routes from './src/routes';
 
 app.use(bodyParser.json());
 app.use(
@@ -45,4 +40,4 @@ if (app.get('env') === 'development') {
   );
 }
 
-export = app;
+// export = app;

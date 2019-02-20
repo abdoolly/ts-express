@@ -3,7 +3,7 @@
  */
 import * as debug from 'debug';
 import * as http from 'http';
-import * as app from '../app';
+import { app } from '../app';
 import { BaseException } from '../src/exceptions/BaseException';
 
 // binding to console
