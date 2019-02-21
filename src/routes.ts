@@ -1,6 +1,6 @@
 import { getRouteProvider } from './serviceProviders/RoutesProvider';
 let Route = getRouteProvider.provide();
 
-Route.get('/test', 'BaseController@test');
+Route.get('/', 'BaseController@test');
 
 export = Route;
