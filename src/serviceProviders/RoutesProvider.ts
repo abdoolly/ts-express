@@ -24,7 +24,7 @@ class RoutesProvider {
     let fakeApp: any = new Proxy(
       app,
       {
-        get: (target: Application, accessedPropertyName: string) => {          
+        get: (target: Application, accessedPropertyName: string) => {
           // if the method is not supported in the above methods object then do nothing
           // and make continue doing whatever it should be doing
           if (!this.methods[accessedPropertyName])

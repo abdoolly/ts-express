@@ -1,4 +1,4 @@
-import { Request, Response } from '../../intefaces/controllers.interface';
+import { Request, Response } from '../../interfaces/controllers.interface';
 
 export class BaseController {
 
