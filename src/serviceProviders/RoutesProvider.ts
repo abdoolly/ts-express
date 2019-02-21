@@ -4,6 +4,10 @@ import { Router } from 'express';
 
 class RoutesProvider {
 
+  /**
+   * currently supported methods if you want to add any other methods
+   * just add them in the below objects and everything will be handled automatically
+   */
   methods = {
     get: 1,
     post: 1,
@@ -124,9 +128,12 @@ class RoutesProvider {
   /**
    * detect the function that we should call in the controllerMapper -- checked
    * apply validators on the incoming request -- checked
-   * override res.send to make a layer before the response
-   * override the res.render to make a layer before the response of a view
-   * apply try and catch when actually calling the controller function
+   * override res.send to make a layer before the response -- checked
+   * override the res.render to make a layer before the response of a view -- checked
+   * apply try and catch when actually calling the controller function -- checked
+   * apply the validators --
+   * call the auditing utility --
+   * make the global error handler --
    */
 }
 
